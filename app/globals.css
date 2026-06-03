@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f7fb;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --muted: #e2e8f0;
+  --muted-foreground: #475569;
+  --primary: #1d4ed8;
+  --primary-foreground: #eff6ff;
+  --secondary: #cbd5e1;
+  --secondary-foreground: #0f172a;
+  --border: #cbd5e1;
+  --ring: #1d4ed8;
+}
+
+.dark {
+  --background: #070b14;
+  --foreground: #e2e8f0;
+  --card: #101827;
+  --card-foreground: #e2e8f0;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --primary: #3b82f6;
+  --primary-foreground: #eff6ff;
+  --secondary: #1f2937;
+  --secondary-foreground: #d1d5db;
+  --border: #334155;
+  --ring: #60a5fa;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top right, #dbeafe 0%, transparent 42%),
+    linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plex-sans), sans-serif;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at top right, rgb(30 58 138 / 0.35) 0%, transparent 48%),
+    linear-gradient(180deg, #080d17 0%, #070b14 100%);
+}
+
+/* Theme-aware fallbacks for legacy utility classes used across existing pages. */
+.dark :where(.bg-white) {
+  background-color: #0f172a !important;
+}
+
+.dark :where(.bg-slate-50) {
+  background-color: #1e293b !important;
+}
+
+.dark :where(.bg-slate-100) {
+  background-color: #273449 !important;
+}
+
+.dark :where(.border-slate-100, .border-slate-200, .border-slate-300) {
+  border-color: #3b4a62 !important;
+}
+
+.dark :where(.text-slate-900, .text-slate-800, .text-slate-700) {
+  color: #e2e8f0 !important;
+}
+
+.dark :where(.text-slate-600, .text-slate-500, .text-slate-400) {
+  color: #94a3b8 !important;
+}
+
+.dark :where(.bg-blue-50) {
+  background-color: rgb(29 78 216 / 0.18) !important;
+}
+
+.dark :where(.text-blue-700) {
+  color: rgb(147 197 253) !important;
+}
+
+.dark :where(.hover\:bg-slate-50:hover, .hover\:bg-slate-100:hover) {
+  background-color: #2a3850 !important;
 }

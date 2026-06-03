@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Supplier Hub
 
-## Getting Started
+Supplier onboarding portal built with Next.js App Router, TypeScript, Tailwind, shadcn/ui, Microsoft Entra ID auth, and Dataverse API integration.
 
-First, run the development server:
+## Quick Local Test (5 minutes)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Create .env.local from .env.example.
+2. Fill in NEXTAUTH_URL, NEXTAUTH_SECRET, TENANT_ID, CLIENT_ID, CLIENT_SECRET, DATAVERSE_URL.
+3. Run npm install.
+4. Run npm run dev.
+5. Open http://localhost:3000 and choose a demo login profile.
+6. Open /register to submit a self-registration request.
+7. Open /test-center and click Run Health Check.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If everything is configured, you should see:
+- HTTP status 200
+- status: "ok"
+- your session role/contactId/accountId
+- Dataverse check ok: true
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Useful Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- npm run dev: start local dev server
+- npm run lint: lint the project
+- npm run build: production build
+- npm run verify: lint + build in one command
 
-## Learn More
+## Required Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+- NEXTAUTH_URL
+- NEXTAUTH_SECRET
+- TENANT_ID
+- CLIENT_ID
+- CLIENT_SECRET
+- DATAVERSE_URL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Test Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- /login: demo sign-in page
+- /register: supplier self-registration + status tracker
+- /dashboard: protected page
+- /admin: reviewer-only page
+- /test-center: one-click validation page
+- /api/health: protected health endpoint (auth + Dataverse check)
+- /api/access-request: create access request
+- /api/access-request/{id}: get request decision
