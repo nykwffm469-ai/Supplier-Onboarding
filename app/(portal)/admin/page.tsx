@@ -34,6 +34,20 @@ export default async function AdminPage() {
             </CardContent>
           </Card>
         </Link>
+
+        <Link href="/admin/themes">
+          <Card className="cursor-pointer transition-shadow hover:shadow-md">
+            <CardHeader>
+              <CardTitle className="text-base">Theme Studio</CardTitle>
+              <CardDescription>
+                Instantly switch branded color systems for customer-specific demos and executive walkthroughs.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <span className="text-xs font-medium text-primary">Open -&gt;</span>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   );

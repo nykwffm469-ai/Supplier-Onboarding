@@ -13,6 +13,9 @@
   --secondary-foreground: #0f172a;
   --border: #cbd5e1;
   --ring: #1d4ed8;
+  --bg-glow: #dbeafe;
+  --bg-from: #f8fbff;
+  --bg-to: #f4f7fb;
 }
 
 .dark {
@@ -28,6 +31,189 @@
   --secondary-foreground: #d1d5db;
   --border: #334155;
   --ring: #60a5fa;
+  --bg-glow: rgb(30 58 138 / 0.35);
+  --bg-from: #080d17;
+  --bg-to: #070b14;
+}
+
+:root[data-brand-theme="cat"] {
+  --primary: #ffcd11;
+  --primary-foreground: #171717;
+  --ring: #ffcd11;
+  --bg-glow: #fde68a;
+  --bg-from: #fffbeb;
+  --bg-to: #fff7cf;
+}
+
+:root[data-brand-theme="john-deere"] {
+  --primary: #367c2b;
+  --primary-foreground: #f0fdf4;
+  --ring: #367c2b;
+  --bg-glow: #bbf7d0;
+  --bg-from: #f7fff8;
+  --bg-to: #ecfdf3;
+}
+
+:root[data-brand-theme="ge"] {
+  --primary: #005cb9;
+  --primary-foreground: #eff6ff;
+  --ring: #005cb9;
+  --bg-glow: #bfdbfe;
+  --bg-from: #f5faff;
+  --bg-to: #e9f3ff;
+}
+
+:root[data-brand-theme="honeywell"] {
+  --primary: #e01f26;
+  --primary-foreground: #fff1f2;
+  --ring: #e01f26;
+  --bg-glow: #fecdd3;
+  --bg-from: #fff8f8;
+  --bg-to: #fff1f2;
+}
+
+:root[data-brand-theme="microsoft"] {
+  --primary: #2563eb;
+  --primary-foreground: #eff6ff;
+  --ring: #2563eb;
+  --bg-glow: #bfdbfe;
+  --bg-from: #f8fbff;
+  --bg-to: #edf4ff;
+}
+
+:root[data-brand-theme="ibm"] {
+  --primary: #0f62fe;
+  --primary-foreground: #eff6ff;
+  --ring: #0f62fe;
+  --bg-glow: #93c5fd;
+  --bg-from: #f5f9ff;
+  --bg-to: #e8f1ff;
+}
+
+:root[data-brand-theme="oracle"] {
+  --primary: #c74634;
+  --primary-foreground: #fff7f5;
+  --ring: #c74634;
+  --bg-glow: #fecaca;
+  --bg-from: #fff8f7;
+  --bg-to: #ffefec;
+}
+
+:root[data-brand-theme="salesforce"] {
+  --primary: #0176d3;
+  --primary-foreground: #eff6ff;
+  --ring: #0176d3;
+  --bg-glow: #bae6fd;
+  --bg-from: #f7fcff;
+  --bg-to: #ecf8ff;
+}
+
+:root[data-brand-theme="ford"] {
+  --primary: #003478;
+  --primary-foreground: #eff6ff;
+  --ring: #003478;
+  --bg-glow: #bfdbfe;
+  --bg-from: #f7f9ff;
+  --bg-to: #edf2ff;
+}
+
+:root[data-brand-theme="siemens"] {
+  --primary: #009999;
+  --primary-foreground: #ecfeff;
+  --ring: #009999;
+  --bg-glow: #99f6e4;
+  --bg-from: #f3fffd;
+  --bg-to: #e6fffb;
+}
+
+:root.dark[data-brand-theme="cat"] {
+  --primary: #ffcd11;
+  --primary-foreground: #171717;
+  --ring: #ffcd11;
+  --bg-glow: rgb(255 205 17 / 0.25);
+  --bg-from: #16120a;
+  --bg-to: #0f0d08;
+}
+
+:root.dark[data-brand-theme="john-deere"] {
+  --primary: #5ca149;
+  --primary-foreground: #f0fdf4;
+  --ring: #5ca149;
+  --bg-glow: rgb(54 124 43 / 0.3);
+  --bg-from: #09150a;
+  --bg-to: #071108;
+}
+
+:root.dark[data-brand-theme="ge"] {
+  --primary: #4ea0ff;
+  --primary-foreground: #eff6ff;
+  --ring: #4ea0ff;
+  --bg-glow: rgb(37 99 235 / 0.32);
+  --bg-from: #071425;
+  --bg-to: #06111f;
+}
+
+:root.dark[data-brand-theme="honeywell"] {
+  --primary: #ff5a5f;
+  --primary-foreground: #fff1f2;
+  --ring: #ff5a5f;
+  --bg-glow: rgb(224 31 38 / 0.3);
+  --bg-from: #1f0b0d;
+  --bg-to: #18080a;
+}
+
+:root.dark[data-brand-theme="microsoft"] {
+  --primary: #60a5fa;
+  --primary-foreground: #eff6ff;
+  --ring: #60a5fa;
+  --bg-glow: rgb(59 130 246 / 0.3);
+  --bg-from: #0a1427;
+  --bg-to: #081120;
+}
+
+:root.dark[data-brand-theme="ibm"] {
+  --primary: #5d9bff;
+  --primary-foreground: #eff6ff;
+  --ring: #5d9bff;
+  --bg-glow: rgb(15 98 254 / 0.3);
+  --bg-from: #0b1221;
+  --bg-to: #090f1b;
+}
+
+:root.dark[data-brand-theme="oracle"] {
+  --primary: #ef6a58;
+  --primary-foreground: #fff7f5;
+  --ring: #ef6a58;
+  --bg-glow: rgb(199 70 52 / 0.32);
+  --bg-from: #200d0c;
+  --bg-to: #1a0a09;
+}
+
+:root.dark[data-brand-theme="salesforce"] {
+  --primary: #38bdf8;
+  --primary-foreground: #082f49;
+  --ring: #38bdf8;
+  --bg-glow: rgb(2 132 199 / 0.34);
+  --bg-from: #081722;
+  --bg-to: #06121b;
+}
+
+:root.dark[data-brand-theme="ford"] {
+  --primary: #3b82f6;
+  --primary-foreground: #eff6ff;
+  --ring: #3b82f6;
+  --bg-glow: rgb(29 78 216 / 0.33);
+  --bg-from: #070f1d;
+  --bg-to: #060c17;
+}
+
+:root.dark[data-brand-theme="siemens"] {
+  --primary: #2dd4bf;
+  --primary-foreground: #052e2b;
+  --ring: #2dd4bf;
+  --bg-glow: rgb(13 148 136 / 0.33);
+  --bg-from: #071817;
+  --bg-to: #051211;
 }
 
 @theme inline {
@@ -53,17 +239,11 @@
 
 body {
   background:
-    radial-gradient(circle at top right, #dbeafe 0%, transparent 42%),
-    linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+    radial-gradient(circle at top right, var(--bg-glow) 0%, transparent 42%),
+    linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
   color: var(--foreground);
   font-family: var(--font-plex-sans), sans-serif;
   transition: background-color 200ms ease, color 200ms ease;
-}
-
-.dark body {
-  background:
-    radial-gradient(circle at top right, rgb(30 58 138 / 0.35) 0%, transparent 48%),
-    linear-gradient(180deg, #080d17 0%, #070b14 100%);
 }
 
 /* Theme-aware fallbacks for legacy utility classes used across existing pages. */

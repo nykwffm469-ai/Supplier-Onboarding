@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { AccessRequestForm } from "@/components/auth/access-request-form";
+import { BrandWordmark } from "@/components/portal/brand-wordmark";
 import { getDemoSession } from "@/lib/demo-auth";
 
 export default async function RegisterPage() {
@@ -13,6 +14,7 @@ export default async function RegisterPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
+      <BrandWordmark className="mb-6 rounded-xl border border-border bg-card/85 p-4 shadow-sm backdrop-blur" />
       <div className="mb-6">
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">Request Supplier Access</h1>
         <p className="mt-1 text-sm text-muted-foreground">
