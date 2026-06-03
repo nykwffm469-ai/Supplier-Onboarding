@@ -21,7 +21,7 @@ The project is designed for fast demos, quick proof-of-concept iterations, and a
 8. Route Map
 9. API Surface
 10. Demo Data and Reset Workflow
-11. UI and Theme Behavior
+11. UI, Theme, and Branding Behavior
 12. Dataverse Integration Notes
 13. Troubleshooting
 14. Deployment Notes
@@ -199,6 +199,7 @@ npm run verify
 
 - /admin
 - /admin/requests
+- /admin/themes
 
 ### Diagnostics
 
@@ -262,12 +263,47 @@ Important note:
 - Visiting /api/demo/reset directly in a browser sends GET and returns 405.
 - Use the Test Center button or send POST.
 
-## UI and Theme Behavior
+## UI, Theme, and Branding Behavior
+
+### Color Mode (System / Light / Dark)
 
 - Theme options are available in the app shell: System, Light, Dark.
 - Theme preference persists in local storage under supplierhub-theme.
 - Root layout applies theme class early to reduce flash during hydration.
 - Global CSS includes dark-mode compatibility fallbacks for legacy utility classes.
+
+### Brand Theme Presets (Demo Branding)
+
+Theme Studio is available at /admin/themes for reviewer users.
+
+It provides one-click brand presets to quickly re-skin demos, including:
+
+- CAT
+- John Deere
+- GE
+- Honeywell
+- Microsoft
+- IBM
+- Oracle
+- Salesforce
+- Ford
+- Siemens
+- Supplier Hub default
+
+Brand preset behavior:
+
+- Brand preset selection persists in local storage under supplierhub-brand-theme.
+- Root layout applies data-brand-theme on the html element before hydration.
+- CSS tokens and gradients update globally based on the selected brand.
+- Header wordmark and favicon are updated to reflect the active brand.
+
+### Theme Pack Import / Export
+
+Theme Studio supports JSON-based theme pack workflow for demo prep:
+
+- Export JSON Pack downloads a pack containing active preset metadata.
+- Import JSON Pack loads a pack and switches to the referenced preset id.
+- This is useful for quickly switching customer-specific demo identities.
 
 ## Dataverse Integration Notes
 
@@ -293,6 +329,14 @@ If needed, clear stored theme:
 
 1. Open browser DevTools console.
 2. Run localStorage.removeItem("supplierhub-theme").
+3. Reload the page.
+
+### Brand style seems stuck after switching presets
+
+If needed, clear stored brand preset:
+
+1. Open browser DevTools console.
+2. Run localStorage.removeItem("supplierhub-brand-theme").
 3. Reload the page.
 
 ### Reviewer dashboard pending counts look wrong
