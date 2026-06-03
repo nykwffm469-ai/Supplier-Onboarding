@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const repositoryName = "Supplier-Onboarding";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  ...(isGitHubPages
+    ? {
+        output: "export",
+        images: {
+          unoptimized: true,
+        },
+        basePath: `/${repositoryName}`,
+        assetPrefix: `/${repositoryName}/`,
+        trailingSlash: true,
+      }
+    : {}),
 };
 
 export default nextConfig;
