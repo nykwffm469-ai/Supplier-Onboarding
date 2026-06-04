@@ -12,9 +12,7 @@ export async function proxy(request: NextRequest) {
   const isPublicPath = publicPaths.includes(pathname);
 
   const redirectTo = (path: string) => {
-    const response = NextResponse.redirect(new URL("/", request.url));
-    response.headers.set("location", path);
-    return response;
+    return NextResponse.redirect(new URL(path, request.url));
   };
 
   if (!hasSession && !isPublicPath) {
