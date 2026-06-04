@@ -342,6 +342,19 @@ If needed, clear stored brand preset:
 
 Use **Reset Demo Story Data** in Test Center to restore baseline seed state.
 
+### 🔁 Logout or route redirect lands on localhost:80
+
+If your app runs behind a reverse proxy/load balancer, redirects can break when host/protocol forwarding headers are missing.
+
+Expected behavior:
+
+- Logout and route-protection redirects should return to the same external host (for example `https://your-app-host/login`).
+
+What this project now does:
+
+- Redirect helpers in auth/demo routes and proxy middleware honor `x-forwarded-host` and `x-forwarded-proto`.
+- Callback URLs are restricted to safe relative paths (for example `/login` or `/dashboard`) to prevent invalid host redirects.
+
 ### 🛠️ Lint/build issues after local edits
 
 Run:
@@ -358,6 +371,7 @@ npm run verify
 - For Azure Static Web Apps with this repository, use the `Next.js` build preset.
 - In Azure Static Web Apps, set `App location` to `supplier-hub`, leave `Api location` empty, and leave `Output location` empty.
 - The auth proxy excludes `/.swa/*` so Azure deployment validation can reach `/.swa/health.html` without being redirected to `/login`.
+- If running behind a reverse proxy or ingress, ensure forwarded host/proto headers are preserved so auth and guard redirects resolve to the public origin.
 
 ## 🎬 Demo Script (Suggested)
 
