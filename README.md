@@ -355,6 +355,9 @@ npm run verify
 - For production, ensure all secrets are injected through secure environment configuration.
 - Replace demo cookie auth with real identity flow as needed.
 - Add persistent storage for non-demo operation if Dataverse is not the long-term backend.
+- For Azure Static Web Apps with this repository, use the `Next.js` build preset.
+- In Azure Static Web Apps, set `App location` to `supplier-hub`, leave `Api location` empty, and leave `Output location` empty.
+- The auth proxy excludes `/.swa/*` so Azure deployment validation can reach `/.swa/health.html` without being redirected to `/login`.
 
 ## 🎬 Demo Script (Suggested)
 

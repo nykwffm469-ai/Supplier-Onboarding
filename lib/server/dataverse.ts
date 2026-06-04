@@ -5,6 +5,15 @@ export type DataverseRecord = Record<string, DataversePrimitive | DataversePrimi
 
 const API_VERSION = "v9.2";
 
+export function isDataverseConfigured(): boolean {
+  return !!(
+    process.env.TENANT_ID &&
+    process.env.CLIENT_ID &&
+    process.env.CLIENT_SECRET &&
+    process.env.DATAVERSE_URL
+  );
+}
+
 function requireEnv(name: string): string {
   const value = process.env[name];
 

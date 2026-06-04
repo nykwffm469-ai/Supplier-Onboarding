@@ -92,7 +92,7 @@ export function AppShell({
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [healthStatus, setHealthStatus] = useState<HealthStatus>("checking");
-  const theme = useSyncExternalStore(
+  const theme = useSyncExternalStore<ThemeSetting>(
     (onStoreChange) => {
       const onThemeChange = () => {
         onStoreChange();
@@ -115,7 +115,7 @@ export function AppShell({
     getStoredTheme,
     () => "system"
   );
-  const brandTheme = useSyncExternalStore(
+  const brandTheme = useSyncExternalStore<string>(
     (onStoreChange) => {
       const onBrandThemeChange = () => {
         onStoreChange();

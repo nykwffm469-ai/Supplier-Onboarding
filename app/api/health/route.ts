@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { getDemoSession } from "@/lib/demo-auth";
-import { getRecords } from "@/lib/server/dataverse";
+import { getRecords, isDataverseConfigured } from "@/lib/server/dataverse";
 
 export async function GET() {
   const session = await getDemoSession();
@@ -16,6 +16,18 @@ export async function GET() {
     contactId: session.contactId,
     accountId: session.accountId,
   };
+
+  if (!isDataverseConfigured()) {
+    return NextResponse.json({
+      status: "ok",
+      auth: authSummary,
+      dataverse: {
+        ok: true,
+        sampleCount: 0,
+        message: "Demo mode active. Dataverse probe skipped because credentials are not configured.",
+      },
+    });
+  }
 
   try {
     const records = await getRecords<{ contactid?: string }>(
