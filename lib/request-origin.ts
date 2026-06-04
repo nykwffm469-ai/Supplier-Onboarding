@@ -11,11 +11,37 @@ function getFirstHeaderValue(value: string | null): string | null {
     .find(Boolean) ?? null;
 }
 
+function getOriginFromUrlHeader(value: string | null): string | null {
+  const rawValue = getFirstHeaderValue(value);
+
+  if (!rawValue) {
+    return null;
+  }
+
+  try {
+    return new URL(rawValue).origin;
+  } catch {
+    return null;
+  }
+}
+
 export function getRequestOrigin(request: NextRequest): string {
+  const originalUrlOrigin =
+    getOriginFromUrlHeader(request.headers.get("x-ms-original-url")) ??
+    getOriginFromUrlHeader(request.headers.get("x-original-url")) ??
+    getOriginFromUrlHeader(request.headers.get("x-forwarded-url"));
+
+  if (originalUrlOrigin) {
+    return originalUrlOrigin;
+  }
+
+  const originalHost =
+    getFirstHeaderValue(request.headers.get("x-ms-original-host")) ??
+    getFirstHeaderValue(request.headers.get("x-original-host"));
   const forwardedHost = getFirstHeaderValue(request.headers.get("x-forwarded-host"));
   const forwardedProto = getFirstHeaderValue(request.headers.get("x-forwarded-proto"));
-  const host = forwardedHost ?? request.headers.get("host");
-  const protocol = forwardedProto ?? request.nextUrl.protocol.replace(":", "");
+  const host = originalHost ?? forwardedHost ?? request.headers.get("host");
+  const protocol = forwardedProto ?? "https";
 
   if (host && protocol) {
     return `${protocol}://${host}`;
