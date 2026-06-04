@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { DEMO_AUTH_COOKIE } from "@/lib/demo-auth";
+import { getRequestOrigin, getSafeCallbackPath } from "@/lib/request-origin";
 
 function clearCookie(response: NextResponse) {
   response.cookies.set(DEMO_AUTH_COOKIE, "", {
@@ -12,8 +13,11 @@ function clearCookie(response: NextResponse) {
 }
 
 export async function GET(request: NextRequest) {
-  const callbackUrl = request.nextUrl.searchParams.get("callbackUrl") ?? "/login";
-  const response = NextResponse.redirect(new URL(callbackUrl, request.url));
+  const callbackPath = getSafeCallbackPath(
+    request.nextUrl.searchParams.get("callbackUrl"),
+    "/login"
+  );
+  const response = NextResponse.redirect(new URL(callbackPath, getRequestOrigin(request)));
   clearCookie(response);
   return response;
 }
