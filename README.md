@@ -1,15 +1,15 @@
-# Supplier Hub
+# 🏭 Supplier Hub
 
 Supplier Hub is a role-aware supplier onboarding portal built with Next.js App Router, TypeScript, Tailwind CSS, and lightweight reusable UI primitives.
 
 It supports two operating modes:
 
-- Demo mode (no Azure or Dataverse credentials required)
-- Dataverse mode (live CRUD against Dataverse tables)
+- 🧪 **Demo mode** — no Azure or Dataverse credentials required
+- ☁️ **Dataverse mode** — live CRUD against Dataverse tables
 
 The project is designed for fast demos, quick proof-of-concept iterations, and an easy path to production hardening.
 
-## Table of Contents
+## 📋 Table of Contents
 
 1. What This App Does
 2. Core User Journeys
@@ -27,25 +27,25 @@ The project is designed for fast demos, quick proof-of-concept iterations, and a
 14. Deployment Notes
 15. Demo Script (Suggested)
 
-## What This App Does
+## 🔍 What This App Does
 
 Supplier Hub models a full onboarding flow where suppliers can:
 
-- Maintain company profile and identifiers
-- Manage capabilities and certifications
-- Track credit ratings
-- Complete onboarding questionnaires
-- Monitor onboarding progress from a dashboard
+- 👤 Maintain company profile and identifiers
+- 🏗️ Manage capabilities and certifications
+- 💳 Track credit ratings
+- 📋 Complete onboarding questionnaires
+- 📊 Monitor onboarding progress from a dashboard
 
 Reviewers can:
 
-- See onboarding and request activity
-- Review pending access requests
-- Assign and review questionnaires
+- 👁️ See onboarding and request activity
+- ✅ Review pending access requests
+- 📝 Assign and review questionnaires
 
-## Core User Journeys
+## 🚀 Core User Journeys
 
-### Supplier Journey
+### 🏢 Supplier Journey
 
 1. Sign in via demo login
 2. Complete profile and identifiers
@@ -54,54 +54,54 @@ Reviewers can:
 5. Complete questionnaires
 6. Reach full onboarding completion on dashboard
 
-### Reviewer Journey
+### 🔎 Reviewer Journey
 
 1. Sign in as reviewer
 2. View high-level pending metrics on dashboard
 3. Process access requests in admin area
 4. Inspect questionnaire pipeline and statuses
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- Framework: Next.js 16 App Router
-- Language: TypeScript
-- UI: Tailwind CSS v4 + composable UI components
-- Auth model: demo cookie session (with optional NextAuth scaffolding)
-- Data model:
+- **Framework:** Next.js 16 App Router
+- **Language:** TypeScript
+- **UI:** Tailwind CSS v4 + composable UI components
+- **Auth model:** demo cookie session (with optional NextAuth scaffolding)
+- **Data model:**
 	- In-memory global stores for demo mode
 	- Dataverse API for connected mode
-- Icons: Lucide
+- **Icons:** Lucide
 
-## Project Structure
+## 📁 Project Structure
 
 Top-level highlights:
 
-- app
+- `app`
 	- auth and portal route groups
 	- API route handlers
 	- global styles and root layout
-- components
+- `components`
 	- admin views
 	- auth forms
 	- portal feature components
 	- shared UI primitives
-- lib
+- `lib`
 	- session/auth helpers
 	- feature service modules
 	- Dataverse abstraction
-- types
+- `types`
 	- ambient typings
 
-Feature services in lib/server are the primary business logic boundary used by API routes.
+Feature services in `lib/server` are the primary business logic boundary used by API routes.
 
-## Local Setup
+## ⚙️ Local Setup
 
 ### Prerequisites
 
 - Node.js 20+
 - npm 10+
 
-### Quick Start (Demo Mode)
+### ⚡ Quick Start (Demo Mode)
 
 1. Install dependencies.
 
@@ -126,33 +126,33 @@ npm run dev
 
 No environment variables are required for demo mode.
 
-## Configuration
+## 🔧 Configuration
 
 ### Environment Variables for Dataverse Mode
 
-Create a .env.local file in supplier-hub root and set:
+Create a `.env.local` file in `supplier-hub` root and set:
 
-- NEXTAUTH_URL
-- NEXTAUTH_SECRET
-- TENANT_ID
-- CLIENT_ID
-- CLIENT_SECRET
-- DATAVERSE_URL
+- `NEXTAUTH_URL`
+- `NEXTAUTH_SECRET`
+- `TENANT_ID`
+- `CLIENT_ID`
+- `CLIENT_SECRET`
+- `DATAVERSE_URL`
 
 Optional Dataverse choice-mapping variables:
 
-- DATAVERSE_REQUESTTYPE_VALUES
-- DATAVERSE_ROLE_VALUES
-- DATAVERSE_DECISION_VALUES
+- `DATAVERSE_REQUESTTYPE_VALUES`
+- `DATAVERSE_ROLE_VALUES`
+- `DATAVERSE_DECISION_VALUES`
 
 Optional lookup override variables:
 
-- DATAVERSE_ACCESSREQUEST_CONTACT_LOOKUP
-- DATAVERSE_ACCESSREQUEST_ACCOUNT_LOOKUP
+- `DATAVERSE_ACCESSREQUEST_CONTACT_LOOKUP`
+- `DATAVERSE_ACCESSREQUEST_ACCOUNT_LOOKUP`
 
 If Dataverse credentials are not present, the app automatically runs in demo mode.
 
-## Running and Verifying
+## ▶️ Running and Verifying
 
 ### Development
 
@@ -178,172 +178,171 @@ npm run build
 npm run verify
 ```
 
-## Route Map
+## 🗺️ Route Map
 
-### Auth and Entry
+### 🔐 Auth and Entry
 
-- /login
-- /register
+- `/login`
+- `/register`
 
-### Supplier and Shared Portal
+### 🏢 Supplier and Shared Portal
 
-- /dashboard
-- /profile
-- /questionnaires
-- /capabilities
-- /certifications
-- /credit
-- /test-center
+- `/dashboard`
+- `/profile`
+- `/questionnaires`
+- `/capabilities`
+- `/certifications`
+- `/credit`
+- `/test-center`
 
-### Reviewer
+### 👔 Reviewer
 
-- /admin
-- /admin/requests
-- /admin/themes
+- `/admin`
+- `/admin/requests`
+- `/admin/themes`
 
-### Diagnostics
+### 🩺 Diagnostics
 
-- /api/health
+- `/api/health`
 
-## API Surface
+## 🔌 API Surface
 
 ### Access Request
 
-- POST /api/access-request
-- GET /api/access-request/[id]
-- POST /api/access-request/[id]/demo-decision
+- `POST /api/access-request`
+- `GET /api/access-request/[id]`
+- `POST /api/access-request/[id]/demo-decision`
 
 ### Admin Requests
 
-- GET /api/admin/requests
-- POST /api/admin/requests/[id]/decide
+- `GET /api/admin/requests`
+- `POST /api/admin/requests/[id]/decide`
 
 ### Dashboard and Profile
 
-- GET /api/dashboard
-- GET/PATCH/POST/DELETE /api/profile
+- `GET /api/dashboard`
+- `GET/PATCH/POST/DELETE /api/profile`
 
 ### Feature Domains
 
-- GET/POST/DELETE /api/capabilities
-- GET/POST/DELETE /api/certifications
-- GET/POST /api/credit
-- GET /api/questionnaires
-- POST /api/questionnaires/create
-- POST /api/questionnaires/assign
-- GET/PATCH /api/questionnaires/[id]
+- `GET/POST/DELETE /api/capabilities`
+- `GET/POST/DELETE /api/certifications`
+- `GET/POST /api/credit`
+- `GET /api/questionnaires`
+- `POST /api/questionnaires/create`
+- `POST /api/questionnaires/assign`
+- `GET/PATCH /api/questionnaires/[id]`
 
 ### Demo Utilities
 
-- POST /api/demo/reset
+- `POST /api/demo/reset`
 
 ### Dataverse Proxy
 
-- /api/dataverse/[table]
-- /api/dataverse/[table]/[id]
+- `/api/dataverse/[table]`
+- `/api/dataverse/[table]/[id]`
 
-## Demo Data and Reset Workflow
+## 🔄 Demo Data and Reset Workflow
 
 The app seeds story-driven demo data for:
 
-- Access requests
-- Supplier profile and identifiers
-- Capabilities and certifications
-- Credit ratings
-- Questionnaire templates and questionnaire instances
+- 📥 Access requests
+- 👤 Supplier profile and identifiers
+- 🏗️ Capabilities and certifications
+- 💳 Credit ratings
+- 📋 Questionnaire templates and questionnaire instances
 
 Reset behavior:
 
-- Test Center includes a Reset Demo Story Data button.
-- This calls POST /api/demo/reset.
+- Test Center includes a **Reset Demo Story Data** button.
+- This calls `POST /api/demo/reset`.
 - Reset repopulates all in-memory stores to baseline values.
 
-Important note:
+> **Note:** Visiting `/api/demo/reset` directly in a browser sends GET and returns 405. Use the Test Center button or send POST.
 
-- Visiting /api/demo/reset directly in a browser sends GET and returns 405.
-- Use the Test Center button or send POST.
+## 🎨 UI, Theme, and Branding Behavior
 
-## UI, Theme, and Branding Behavior
-
-### Color Mode (System / Light / Dark)
+### 🌙 Color Mode (System / Light / Dark)
 
 - Theme options are available in the app shell: System, Light, Dark.
-- Theme preference persists in local storage under supplierhub-theme.
+- Theme preference persists in local storage under `supplierhub-theme`.
 - Root layout applies theme class early to reduce flash during hydration.
 - Global CSS includes dark-mode compatibility fallbacks for legacy utility classes.
 
-### Brand Theme Presets (Demo Branding)
+### 🏷️ Brand Theme Presets (Demo Branding)
 
-Theme Studio is available at /admin/themes for reviewer users.
+Theme Studio is available at `/admin/themes` for reviewer users.
 
 It provides one-click brand presets to quickly re-skin demos, including:
 
-- CAT
-- John Deere
-- GE
-- Honeywell
-- Microsoft
-- IBM
-- Oracle
-- Salesforce
-- Ford
-- Siemens
-- Supplier Hub default
+| Preset | Company |
+|---|---|
+| 🟡 CAT | Caterpillar Inc. |
+| 🟢 John Deere | Deere & Company |
+| 🔵 GE | General Electric |
+| 🔴 Honeywell | Honeywell International |
+| 🔵 Microsoft | Microsoft Corporation |
+| 🔵 IBM | IBM Corporation |
+| 🔴 Oracle | Oracle Corporation |
+| 🔵 Salesforce | Salesforce Inc. |
+| 🔵 Ford | Ford Motor Company |
+| 🩵 Siemens | Siemens AG |
+| ⬜ Default | Supplier Hub |
 
 Brand preset behavior:
 
-- Brand preset selection persists in local storage under supplierhub-brand-theme.
-- Root layout applies data-brand-theme on the html element before hydration.
+- Brand preset selection persists in local storage under `supplierhub-brand-theme`.
+- Root layout applies `data-brand-theme` on the `html` element before hydration.
 - CSS tokens and gradients update globally based on the selected brand.
 - Header wordmark and favicon are updated to reflect the active brand.
 
-### Theme Pack Import / Export
+### 📦 Theme Pack Import / Export
 
-Theme Studio supports JSON-based theme pack workflow for demo prep:
+Theme Studio supports a JSON-based theme pack workflow for demo prep:
 
-- Export JSON Pack downloads a pack containing active preset metadata.
-- Import JSON Pack loads a pack and switches to the referenced preset id.
-- This is useful for quickly switching customer-specific demo identities.
+- **Export JSON Pack** downloads a pack containing active preset metadata.
+- **Import JSON Pack** loads a pack and switches to the referenced preset id.
+- Useful for quickly switching customer-specific demo identities across machines.
 
-## Dataverse Integration Notes
+## ☁️ Dataverse Integration Notes
 
 - All feature services first check whether Dataverse is configured.
 - In demo mode, services read/write in-memory global stores.
 - In Dataverse mode, services call table endpoints through a shared server abstraction.
 - This makes feature components API-stable regardless of backing mode.
 
-## Troubleshooting
+## 🔦 Troubleshooting
 
-### Health badge shows System Check Failed
+### ❌ Health badge shows System Check Failed
 
-This usually indicates /api/health is returning 503 because Dataverse credentials are missing or invalid.
+This usually indicates `/api/health` is returning 503 because Dataverse credentials are missing or invalid.
 
 Expected behavior:
 
 - App should still load and operate in demo mode.
 - Badge reflects degraded health but does not block usage.
 
-### Blank page after theme changes
+### ⬜ Blank page after theme changes
 
 If needed, clear stored theme:
 
 1. Open browser DevTools console.
-2. Run localStorage.removeItem("supplierhub-theme").
+2. Run `localStorage.removeItem("supplierhub-theme")`.
 3. Reload the page.
 
-### Brand style seems stuck after switching presets
+### 🎨 Brand style seems stuck after switching presets
 
 If needed, clear stored brand preset:
 
 1. Open browser DevTools console.
-2. Run localStorage.removeItem("supplierhub-brand-theme").
+2. Run `localStorage.removeItem("supplierhub-brand-theme")`.
 3. Reload the page.
 
-### Reviewer dashboard pending counts look wrong
+### 📊 Reviewer dashboard pending counts look wrong
 
-Use Reset Demo Story Data in Test Center to restore baseline seed state.
+Use **Reset Demo Story Data** in Test Center to restore baseline seed state.
 
-### Lint/build issues after local edits
+### 🛠️ Lint/build issues after local edits
 
 Run:
 
@@ -351,24 +350,24 @@ Run:
 npm run verify
 ```
 
-## Deployment Notes
+## 🚀 Deployment Notes
 
 - For production, ensure all secrets are injected through secure environment configuration.
 - Replace demo cookie auth with real identity flow as needed.
 - Add persistent storage for non-demo operation if Dataverse is not the long-term backend.
 
-## Demo Script (Suggested)
+## 🎬 Demo Script (Suggested)
 
-### 8-minute flow
+### ⏱️ 8-minute flow
 
-1. Open /test-center and click Reset Demo Story Data.
-2. Sign in as Supplier and walk through:
-	 - Dashboard completion
+1. 🔄 Open `/test-center` and click **Reset Demo Story Data**.
+2. 🏢 Sign in as **Supplier** and walk through:
+	 - Dashboard completion ring
 	 - Profile details and identifiers
 	 - Capabilities, certifications, credit, questionnaires
-3. Sign out and sign in as Reviewer.
-4. Show reviewer dashboard counts.
-5. Open Admin > Access Requests and process a request.
-6. Return to dashboard to show metrics shift.
+3. 🔄 Sign out and sign in as **Reviewer**.
+4. 📊 Show reviewer dashboard counts.
+5. ✅ Open **Admin > Access Requests** and process a request.
+6. 📈 Return to dashboard to show metrics shift.
 
 This sequence consistently tells a complete onboarding story with minimal setup friction.
