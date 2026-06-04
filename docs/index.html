@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supplier Hub — Onboarding Portal</title>
+  <meta name="description" content="Supplier Hub is a role-aware supplier onboarding portal built with Next.js, Tailwind CSS, and Azure Dataverse." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="nav-brand">
+        <div class="logo-mark">SH</div>
+        <div>
+          <div class="nav-title">Supplier Hub</div>
+          <div class="nav-sub">Onboarding Portal</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#journeys">User Journeys</a>
+        <a href="#themes">Themes</a>
+        <a href="https://github.com/nykwffm469-ai/brschafeIP" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="badge-pill">Demo-Ready · Azure Dataverse · Next.js 16</div>
+      <h1 class="hero-heading">Enterprise Supplier<br />Onboarding, Reimagined</h1>
+      <p class="hero-sub">
+        A role-aware portal for suppliers and reviewers — complete with questionnaire workflows,
+        capability tracking, certifications, credit monitoring, and fully branded demo theming.
+      </p>
+      <div class="hero-actions">
+        <a href="#journeys" class="btn btn-primary">See the Demo Flow</a>
+        <a href="https://github.com/nykwffm469-ai/brschafeIP" target="_blank" rel="noopener" class="btn btn-outline">Source Code</a>
+      </div>
+      <div class="hero-stack">
+        <span class="stack-chip">Next.js</span>
+        <span class="stack-chip">TypeScript</span>
+        <span class="stack-chip">Tailwind CSS</span>
+        <span class="stack-chip">Azure Dataverse</span>
+        <span class="stack-chip">Demo Mode</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-label">Platform Capabilities</div>
+      <h2 class="section-heading">Everything a supplier program needs</h2>
+      <p class="section-sub">Built for enterprise demo environments and rapid proof-of-concept work, with a clear path to production.</p>
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #dbeafe; color: #1d4ed8;">📊</div>
+          <h3>Executive Dashboard</h3>
+          <p>Reviewer-level KPI cards, SVG trend charts, queue depth bar graph, and recommended action queue. Supplier completion progress rings and module-level breakdown.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #dcfce7; color: #15803d;">📋</div>
+          <h3>Questionnaire Wizard</h3>
+          <p>Multi-section guided questionnaires with template assignment, field-level validation, progress tracking, and save/resume capability.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #fef9c3; color: #b45309;">🏗️</div>
+          <h3>Capabilities Manager</h3>
+          <p>Add, edit, and remove supplier capability records with categories, descriptions, and certification linkage.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #fce7f3; color: #9d174d;">🏅</div>
+          <h3>Certifications Tracker</h3>
+          <p>Track ISO, safety, and compliance certifications with expiry visibility and renewal status.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #ede9fe; color: #6d28d9;">💳</div>
+          <h3>Credit Panel</h3>
+          <p>Credit rating display and history, with status badges and reviewer-level override capability.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #ffedd5; color: #c2410c;">🔐</div>
+          <h3>Access Request Workflow</h3>
+          <p>Self-registration, request tracking, reviewer approve/reject flow, and Dataverse contact linkage.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #e0f2fe; color: #0369a1;">🎨</div>
+          <h3>Theme Studio</h3>
+          <p>One-click brand presets for CAT, John Deere, GE, Honeywell, Microsoft, IBM, Oracle, Salesforce, Ford, and Siemens. Export and import theme packs as JSON.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #d1fae5; color: #065f46;">⚙️</div>
+          <h3>Test Center &amp; Reset</h3>
+          <p>Full diagnostics suite including system health, API connectivity, session state, and one-click story data reset.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: #fef2f2; color: #b91c1c;">🤖</div>
+          <h3>AI Chat Assistant</h3>
+          <p>Floating context-aware chat panel on every page with canned intent replies, route shortcuts, and suggested next actions.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- User Journeys -->
+  <section class="section section-alt" id="journeys">
+    <div class="container">
+      <div class="section-label">Demo Script</div>
+      <h2 class="section-heading">Two roles, one complete story</h2>
+      <p class="section-sub">An 8-minute walkthrough that covers the full supplier onboarding lifecycle from first access request to final review.</p>
+
+      <div class="journey-grid">
+        <div class="journey-card">
+          <div class="journey-role">Supplier</div>
+          <ol class="journey-steps">
+            <li>Sign in via demo login as <strong>Alex Supplier</strong></li>
+            <li>Review onboarding progress on the dashboard</li>
+            <li>Complete company profile with identifiers</li>
+            <li>Add manufacturing capabilities</li>
+            <li>Upload and track ISO certifications</li>
+            <li>Review credit standing and history</li>
+            <li>Complete the assigned onboarding questionnaire</li>
+            <li>Return to dashboard — watch completion percentage rise</li>
+          </ol>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-role reviewer">Reviewer</div>
+          <ol class="journey-steps">
+            <li>Switch to <strong>Riley Reviewer</strong> account</li>
+            <li>View executive dashboard — KPI cards, pending queue, trends</li>
+            <li>Open Admin &rarr; Access Requests</li>
+            <li>Approve Morgan Supply from Northwind Components</li>
+            <li>Return to dashboard — see pending count decrement</li>
+            <li>Open Admin &rarr; Theme Studio</li>
+            <li>Switch to <strong>CAT Industrial</strong> — full rebrand in one click</li>
+            <li>Export theme pack JSON for the next demo</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="reset-note">
+        <strong>Pro tip:</strong> Before any demo, open the Test Center and click <em>Reset Demo Story Data</em> to restore all seeded content to its baseline state.
+      </div>
+    </div>
+  </section>
+
+  <!-- Themes -->
+  <section class="section" id="themes">
+    <div class="container">
+      <div class="section-label">Brand Theming</div>
+      <h2 class="section-heading">One click. Fully branded.</h2>
+      <p class="section-sub">Theme Studio instantly re-skins the entire portal — colors, header wordmark, background gradients, and favicon — to match your customer's brand.</p>
+
+      <div class="theme-grid">
+        <div class="theme-chip" style="--chip-color: #ffcd11; --chip-text: #111;">CAT</div>
+        <div class="theme-chip" style="--chip-color: #367c2b; --chip-text: #f7c845;">John Deere</div>
+        <div class="theme-chip" style="--chip-color: #005cb9; --chip-text: #e6f2ff;">GE</div>
+        <div class="theme-chip" style="--chip-color: #e01f26; --chip-text: #fff1f2;">Honeywell</div>
+        <div class="theme-chip" style="--chip-color: #2563eb; --chip-text: #eef5ff;">Microsoft</div>
+        <div class="theme-chip" style="--chip-color: #0f62fe; --chip-text: #edf5ff;">IBM</div>
+        <div class="theme-chip" style="--chip-color: #c74634; --chip-text: #fff7f5;">Oracle</div>
+        <div class="theme-chip" style="--chip-color: #0176d3; --chip-text: #d9eeff;">Salesforce</div>
+        <div class="theme-chip" style="--chip-color: #003478; --chip-text: #e8eff9;">Ford</div>
+        <div class="theme-chip" style="--chip-color: #009999; --chip-text: #effdfd;">Siemens</div>
+      </div>
+
+      <div class="theme-features">
+        <div class="theme-feature">
+          <div class="tf-icon">🎨</div>
+          <div>
+            <strong>Global CSS tokens</strong><br />
+            Primary color, gradients, and glow adjust automatically across every component.
+          </div>
+        </div>
+        <div class="theme-feature">
+          <div class="tf-icon">🏷️</div>
+          <div>
+            <strong>Header wordmark &amp; favicon</strong><br />
+            Brand name, sub-title, and browser tab icon update in real-time.
+          </div>
+        </div>
+        <div class="theme-feature">
+          <div class="tf-icon">📦</div>
+          <div>
+            <strong>JSON theme packs</strong><br />
+            Export the active preset as a JSON file. Import it on another machine or browser to restore the exact demo configuration.
+          </div>
+        </div>
+        <div class="theme-feature">
+          <div class="tf-icon">🌙</div>
+          <div>
+            <strong>Dark mode compatible</strong><br />
+            Every brand preset includes light and dark variants. Switch modes without losing the brand color palette.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-heading">Production-ready foundation</h2>
+      <div class="arch-grid">
+        <div class="arch-item"><span class="arch-label">Framework</span>Next.js 16 App Router</div>
+        <div class="arch-item"><span class="arch-label">Language</span>TypeScript 5</div>
+        <div class="arch-item"><span class="arch-label">Styling</span>Tailwind CSS v4</div>
+        <div class="arch-item"><span class="arch-label">Auth</span>Demo cookie session + NextAuth scaffold</div>
+        <div class="arch-item"><span class="arch-label">Backend</span>In-memory demo stores or Azure Dataverse</div>
+        <div class="arch-item"><span class="arch-label">Icons</span>Lucide React</div>
+        <div class="arch-item"><span class="arch-label">Fonts</span>IBM Plex Sans &amp; Mono</div>
+        <div class="arch-item"><span class="arch-label">Deploy</span>Node.js 20 / Vercel / Azure App Service</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo-mark logo-mark-sm">SH</div>
+        <span class="footer-title">Supplier Hub</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/nykwffm469-ai/brschafeIP" target="_blank" rel="noopener">GitHub Repository</a>
+        <a href="#features">Features</a>
+        <a href="#journeys">Demo Script</a>
+        <a href="#themes">Themes</a>
+      </div>
+      <div class="footer-copy">© Supplier Hub 2026 · Built for enterprise demos</div>
+    </div>
+  </footer>
+
+</body>
+</html>
