@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Activity, Building2, ChevronDown, ClipboardList, CreditCard, FileCheck2, LayoutDashboard, LogOut, Menu, Monitor, Moon, Palette, Search, ShieldCheck, Sun, UserCircle2, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
 import type { UserRole } from "@/lib/auth";
 import { SiteFooter } from "@/components/portal/site-footer";
@@ -44,6 +44,7 @@ type HealthStatus = "checking" | "ok" | "degraded";
 type ThemeSetting = "light" | "dark" | "system";
 
 const THEME_STORAGE_KEY = "supplierhub-theme";
+const THEME_CHANGE_EVENT = "supplierhub:theme-change";
 
 function getStoredTheme(): ThemeSetting {
   if (typeof window === "undefined") return "system";
@@ -91,8 +92,52 @@ export function AppShell({
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [healthStatus, setHealthStatus] = useState<HealthStatus>("checking");
-  const [theme, setTheme] = useState<ThemeSetting>(() => getStoredTheme());
-  const [brandTheme, setBrandTheme] = useState<string>(() => readStoredBrandTheme());
+  const theme = useSyncExternalStore(
+    (onStoreChange) => {
+      const onThemeChange = () => {
+        onStoreChange();
+      };
+
+      const onStorage = (event: StorageEvent) => {
+        if (event.key === THEME_STORAGE_KEY) {
+          onStoreChange();
+        }
+      };
+
+      window.addEventListener(THEME_CHANGE_EVENT, onThemeChange);
+      window.addEventListener("storage", onStorage);
+
+      return () => {
+        window.removeEventListener(THEME_CHANGE_EVENT, onThemeChange);
+        window.removeEventListener("storage", onStorage);
+      };
+    },
+    getStoredTheme,
+    () => "system"
+  );
+  const brandTheme = useSyncExternalStore(
+    (onStoreChange) => {
+      const onBrandThemeChange = () => {
+        onStoreChange();
+      };
+
+      const onStorage = (event: StorageEvent) => {
+        if (event.key === "supplierhub-brand-theme") {
+          onStoreChange();
+        }
+      };
+
+      window.addEventListener(BRAND_THEME_CHANGE_EVENT, onBrandThemeChange);
+      window.addEventListener("storage", onStorage);
+
+      return () => {
+        window.removeEventListener(BRAND_THEME_CHANGE_EVENT, onBrandThemeChange);
+        window.removeEventListener("storage", onStorage);
+      };
+    },
+    readStoredBrandTheme,
+    () => "default"
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [isQuickLinksOpen, setIsQuickLinksOpen] = useState(false);
 
@@ -178,31 +223,10 @@ export function AppShell({
     return () => media.removeListener(syncSystemTheme);
   }, [theme]);
 
-  useEffect(() => {
-    const onBrandThemeChange = (event: Event) => {
-      const payload = event as CustomEvent<{ themeId?: string }>;
-      setBrandTheme(payload.detail?.themeId ?? readStoredBrandTheme());
-    };
-
-    const onStorage = (event: StorageEvent) => {
-      if (event.key === "supplierhub-brand-theme") {
-        setBrandTheme(readStoredBrandTheme());
-      }
-    };
-
-    window.addEventListener(BRAND_THEME_CHANGE_EVENT, onBrandThemeChange as EventListener);
-    window.addEventListener("storage", onStorage);
-
-    return () => {
-      window.removeEventListener(BRAND_THEME_CHANGE_EVENT, onBrandThemeChange as EventListener);
-      window.removeEventListener("storage", onStorage);
-    };
-  }, []);
-
   function applyTheme(setting: ThemeSetting) {
-    setTheme(setting);
     setStoredTheme(setting);
     document.documentElement.classList.toggle("dark", resolveDarkMode(setting));
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   }
 
   function handleQuickLinkNavigate(href: string) {

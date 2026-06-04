@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import Script from "next/script";
 import { FloatingChatAgent } from "@/components/portal/floating-chat-agent";
 import { brandThemes } from "@/lib/brand-theme";
 import "./globals.css";
@@ -45,9 +46,10 @@ export default function RootLayout({
       className={`${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(() => {
+        <Script
+          id="supplierhub-theme-bootstrap"
+          strategy="beforeInteractive"
+        >{`(() => {
   try {
     const stored = localStorage.getItem("supplierhub-theme") || "system";
     const brandTheme = localStorage.getItem("supplierhub-brand-theme") || "default";
@@ -71,9 +73,7 @@ export default function RootLayout({
   } catch {
     /* no-op */
   }
-})();`,
-          }}
-        />
+})();`}</Script>
       </head>
       <body className="min-h-full flex flex-col">
         {children}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Check, Palette } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +18,29 @@ import { cn } from "@/lib/utils";
 
 export function ThemeStudio() {
   const importInputRef = useRef<HTMLInputElement | null>(null);
-  const [activeTheme, setActiveTheme] = useState<string>(() => readStoredBrandTheme());
+  const activeTheme = useSyncExternalStore(
+    (onStoreChange) => {
+      const onThemeChange = () => {
+        onStoreChange();
+      };
+
+      const onStorage = (event: StorageEvent) => {
+        if (event.key === "supplierhub-brand-theme") {
+          onStoreChange();
+        }
+      };
+
+      window.addEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange);
+      window.addEventListener("storage", onStorage);
+
+      return () => {
+        window.removeEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange);
+        window.removeEventListener("storage", onStorage);
+      };
+    },
+    readStoredBrandTheme,
+    () => "default"
+  );
   const [packStatus, setPackStatus] = useState<string>("");
 
   const selectedTheme = useMemo(
@@ -26,22 +48,8 @@ export function ThemeStudio() {
     [activeTheme]
   );
 
-  useEffect(() => {
-    applyBrandTheme(activeTheme);
-  }, [activeTheme]);
-
-  useEffect(() => {
-    const onThemeChange = (event: Event) => {
-      const payload = event as CustomEvent<{ themeId?: string }>;
-      setActiveTheme(payload.detail?.themeId ?? readStoredBrandTheme());
-    };
-
-    window.addEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange as EventListener);
-    return () => window.removeEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange as EventListener);
-  }, []);
-
   function applyTheme(themeId: string) {
-    setActiveTheme(applyBrandTheme(themeId));
+    applyBrandTheme(themeId);
     setPackStatus("");
   }
 
@@ -87,7 +95,7 @@ export function ThemeStudio() {
         throw new Error("No valid theme id found in the file.");
       }
 
-      setActiveTheme(applyBrandTheme(candidate));
+      applyBrandTheme(candidate);
       setPackStatus(`Imported theme pack. Active theme set to ${getBrandTheme(candidate).name}.`);
     } catch (error) {
       setPackStatus(error instanceof Error ? `Import failed: ${error.message}` : "Import failed.");

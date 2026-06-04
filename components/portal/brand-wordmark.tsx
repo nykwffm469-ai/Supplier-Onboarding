@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { BRAND_THEME_CHANGE_EVENT, getBrandTheme, readStoredBrandTheme } from "@/lib/brand-theme";
 
@@ -9,29 +9,30 @@ type BrandWordmarkProps = {
 };
 
 export function BrandWordmark({ className }: BrandWordmarkProps) {
-  const [themeId, setThemeId] = useState<string>(() => readStoredBrandTheme());
+  const themeId = useSyncExternalStore(
+    (onStoreChange) => {
+      const onThemeChange = () => {
+        onStoreChange();
+      };
+
+      const onStorage = (event: StorageEvent) => {
+        if (event.key === "supplierhub-brand-theme") {
+          onStoreChange();
+        }
+      };
+
+      window.addEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange);
+      window.addEventListener("storage", onStorage);
+
+      return () => {
+        window.removeEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange);
+        window.removeEventListener("storage", onStorage);
+      };
+    },
+    readStoredBrandTheme,
+    () => "default"
+  );
   const brand = getBrandTheme(themeId);
-
-  useEffect(() => {
-    const onThemeChange = (event: Event) => {
-      const payload = event as CustomEvent<{ themeId?: string }>;
-      setThemeId(payload.detail?.themeId ?? readStoredBrandTheme());
-    };
-
-    const onStorage = (event: StorageEvent) => {
-      if (event.key === "supplierhub-brand-theme") {
-        setThemeId(readStoredBrandTheme());
-      }
-    };
-
-    window.addEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange as EventListener);
-    window.addEventListener("storage", onStorage);
-
-    return () => {
-      window.removeEventListener(BRAND_THEME_CHANGE_EVENT, onThemeChange as EventListener);
-      window.removeEventListener("storage", onStorage);
-    };
-  }, []);
 
   return (
     <div className={className}>
