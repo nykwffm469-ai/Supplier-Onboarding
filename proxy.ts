@@ -1,28 +1,32 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { getDemoSessionFromRequest } from "@/lib/demo-auth";
-import { getRequestOrigin } from "@/lib/request-origin";
 
 const publicPaths = ["/login", "/register"];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const origin = getRequestOrigin(request);
   const session = getDemoSessionFromRequest(request);
   const hasSession = Boolean(session);
   const role = session?.role ?? "supplier";
   const isPublicPath = publicPaths.includes(pathname);
 
+  const redirectTo = (path: string) => {
+    const response = NextResponse.redirect(new URL("/", request.url));
+    response.headers.set("location", path);
+    return response;
+  };
+
   if (!hasSession && !isPublicPath) {
-    return NextResponse.redirect(new URL("/login", origin));
+    return redirectTo("/login");
   }
 
   if (hasSession && isPublicPath) {
-    return NextResponse.redirect(new URL("/dashboard", origin));
+    return redirectTo("/dashboard");
   }
 
   if (hasSession && pathname.startsWith("/admin") && role !== "reviewer") {
-    return NextResponse.redirect(new URL("/dashboard", origin));
+    return redirectTo("/dashboard");
   }
 
   return NextResponse.next();

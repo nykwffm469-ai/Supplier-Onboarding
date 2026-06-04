@@ -5,7 +5,7 @@ import {
   getDemoSessionCookieValue,
   type DemoUserKey,
 } from "@/lib/demo-auth";
-import { getRequestOrigin, getSafeCallbackPath } from "@/lib/request-origin";
+import { getSafeCallbackPath } from "@/lib/request-origin";
 
 const validUsers: DemoUserKey[] = ["supplier", "reviewer"];
 
@@ -23,7 +23,8 @@ export async function GET(request: NextRequest) {
     "/dashboard"
   );
   const user = getRequestedUser(request.nextUrl.searchParams.get("user"));
-  const response = NextResponse.redirect(new URL(callbackPath, getRequestOrigin(request)));
+  const response = NextResponse.redirect(new URL("/", request.url));
+  response.headers.set("location", callbackPath);
 
   response.cookies.set(DEMO_AUTH_COOKIE, getDemoSessionCookieValue(user), {
     httpOnly: true,
